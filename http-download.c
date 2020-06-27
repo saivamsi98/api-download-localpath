@@ -1,10 +1,15 @@
 #include"header.h"
+#define SWR 16//port0.16
+#define SW 1//port0.1
 int main(int argc,char **argv)
 {
+    io_dir(PORT0,SWR,OUTPUT);//port0.16 is output pin
+    io_dir(PORT0,SW,INPUT);//port0.1 is input pin
     CURL *curl;  //creating curl handler,will be responsible for all n/w functions in this program
     FILE *fp;   //declaring a file pointer
     int result;
-    
+    if(io_read(PORT0,SW)==0)//is switch is pressed it enters the task and reads the latest data from url
+    {
     fp=fopen(argv[2],"wb"); //opening the destination path in write binary,to store the data that downloaded
     
     curl = curl_easy_init(); //initiallizing curl
@@ -15,7 +20,7 @@ int main(int argc,char **argv)
 
     //curl library by default doesn't consider http errors as real error 
     curl_easy_setopt(curl, CURLOPT_FAILONERROR, 1L);//for fixing http errors we are setting CURLOPT_FAILONERROR to 1
-    
+    }
     result = curl_easy_perform(curl); //this function returns an integer that download is succesfull or not
     
     if(result == CURLE_OK) //if suuccess it prints if data 
