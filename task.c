@@ -14,6 +14,8 @@ int main(int argc,char **argv)
     {
         temp=len=strlen(s);//calculating the length of fetched string
         i=0;
+        //consider this example for below logic
+        //"123":"Hello"
         for(;len-5;len--,i++)//to remove quotations iterating the loop 5times
             s2[i]=s[i+2];//only storing the name without quotations in array named s2
     
