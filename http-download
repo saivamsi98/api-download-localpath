@@ -1,5 +1,4 @@
-#include<stdio.h>
-#include<curl/curl.h>   //header file contains all the functions for downloading files from url
+#include"header.h"
 int main(int argc,char **argv)
 {
     CURL *curl;  //creating curl handler,will be responsible for all n/w functions in this program
